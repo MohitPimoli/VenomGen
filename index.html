@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VenomGen</title>
+    <link
+      rel="icon"
+      href="/assets/img/favicon-potion.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>MSFvenom Command Generator</h1>
+      <form id="msfvenomForm">
+        <label for="payload">Select Payload:</label>
+        <select id="payload" name="payload" onchange="updateFormFields()">
+          <!-- Binaries Payloads -->
+          <optgroup label="Binaries Payloads">
+            <option value="linux/x86/meterpreter/reverse_tcp">
+              Linux Meterpreter Reverse Shell
+            </option>
+            <option value="linux/x86/meterpreter/bind_tcp">
+              Linux Bind Meterpreter Shell
+            </option>
+            <option value="generic/shell_bind_tcp">Linux Bind Shell</option>
+            <option value="windows/meterpreter/reverse_tcp">
+              Windows Meterpreter Reverse TCP Shell
+            </option>
+            <option value="windows/shell/reverse_tcp">
+              Windows Reverse TCP Shell
+            </option>
+            <option value="windows/meterpreter/reverse_tcp_encoded">
+              Windows Encoded Meterpreter Windows Reverse Shell
+            </option>
+            <option value="osx/x86/shell_reverse_tcp">Mac Reverse Shell</option>
+            <option value="osx/x86/shell_bind_tcp">Mac Bind Shell</option>
+          </optgroup>
+
+          <!-- Scripting Payloads -->
+          <optgroup label="Scripting Payloads">
+            <option value="Scripting_Reverse_Shell">
+              Scripting Reverse Shell
+            </option>
+          </optgroup>
+
+          <!-- Shellcode -->
+          <optgroup label="Shellcode">
+            <option value="win/meterp/rev/tcp/shellcode">
+              Windows Meterpreter Reverse TCP Shellcode
+            </option>
+            <option value="lnx/x86/meterp/rev/tcp/shellcode">
+              Linux Meterpreter Reverse TCP Shellcode
+            </option>
+            <option value="osx/x86/rev/tcp/shellcode">
+              Mac Reverse TCP Shellcode
+            </option>
+          </optgroup>
+
+          <!-- Create User -->
+          <optgroup label="Create User">
+            <option value="windows/adduser">Create User</option>
+          </optgroup>
+        </select>
+
+        <div id="dynamicFields">
+          <!-- Default Fields (LHOST and LPORT for most payloads) -->
+          <label for="lhost">LHOST:</label>
+          <input
+            type="text"
+            id="lhost"
+            name="lhost"
+            placeholder="Enter LHOST"
+            required
+          />
+
+          <label for="lport">LPORT:</label>
+          <input
+            type="number"
+            id="lport"
+            name="lport"
+            placeholder="Enter LPORT"
+            required
+          />
+        </div>
+        <div id="formatSection">
+          <label for="format">Output Format:</label>
+          <select id="format" name="format">
+            <option value="exe">exe</option>
+            <option value="elf">elf</option>
+            <option value="raw">raw</option>
+            <option value="macho">macho</option>
+            <option value="asp">asp</option>
+            <option value="war">war</option>
+            <option value="php">php</option>
+            <option value="sh">sh</option>
+            <option value="pl">pl</option>
+          </select>
+        </div>
+
+        <div id="fileSection">
+          <label for="output">Output Filename:</label>
+          <input
+            type="text"
+            id="output"
+            name="output"
+            placeholder="name without extension"
+            required
+          />
+        </div>
+
+        <button type="button" onclick="generateCommand()">
+          Generate Command
+        </button>
+      </form>
+
+      <h2>Generated Command:</h2>
+      <textarea id="generatedCommand" readonly></textarea>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+  </body>
+</html>
