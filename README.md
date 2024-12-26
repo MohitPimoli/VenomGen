@@ -14,7 +14,7 @@ This project is a simple MSFvenom Command Generator built with HTML, CSS, and Ja
 
 ## How to Use
 
-1. Follow this link.
+1. Follow [this](https://mohitpimoli.github.io/VenomGen/) link.
 
 2. Select the desired payload from the dropdown list.
 
